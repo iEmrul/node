@@ -1,54 +1,54 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const dishRouter = express.Router();
+const promoRouter = express.Router();
 
-dishRouter.use(bodyParser.json());
+promoRouter.use(bodyParser.json());
 
-dishRouter.route('/')
+promoRouter.route('/')
 .all((req,res,next) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     next();
 })
 .get((req,res,next) => {
-    res.end('Will send all the dishes to you!');
+    res.end('Will send all the promo to you!');
 })
 .post((req, res, next) => {
-    res.end('Will add the dish: ' + req.body.name + ' with details: ' + req.body.description);
+    res.end('Will add the promo: ' + req.body.name + ' with details: ' + req.body.description);
 })
 .put((req, res, next) => {
     res.statusCode = 403;
-    res.end('PUT operation not supported on /dishes');
+    res.end('PUT operation not supported on /promo');
 })
 .delete((req, res, next) => {
-    res.end('Deleting all dishes');
+    res.end('Deleting all promos');
 });
 
 
-dishRouter.route('/:dishId')
+promoRouter.route('/:promoId')
 .all((req,res,next) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     next();
 })
 .get((req,res,next) => {
-    res.end('Will send ' + req.params.dishId);
+    res.end('Will send ' + req.params.promoId);
 })
 .post((req, res, next) => {
     res.statusCode = 403;
-    res.end('POST operation not supported ' + req.params.dishId);
+    res.end('POST operation not supported ' + req.params.promoId);
 })
 .put((req, res, next) => {
     res.write('Updating the dish');
-    res.end('will update the dish: ' + req.body.name +
+    res.end('will update the promo: ' + req.body.name +
         ' with the detail ' + req.body.description
     )
 })
 .delete((req, res, next) => {
-    res.end('Deleting the dishe ' + req.params.dishId);
+    res.end('Deleting the dishe ' + req.params.promoId);
 })
 
 
 
-module.exports = dishRouter;
+module.exports = promoRouter;
